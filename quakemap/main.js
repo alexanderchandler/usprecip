@@ -144,12 +144,12 @@ map.on('load', function() {
     let compdate;
     console.log(checkdate);
     let dateindex = 0;
-    let datelist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let datelist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     function richterToJoules(mag) {
         let joules = Math.pow(10, (5.24 + (1.44 * mag)));
         // console.log(joules);
-        let petajoules = 4.184 * (joules * 0.000000000001);
+        let petajoules = (joules * 0.000000000001);
         // console.log(petajoules);
         return petajoules
     }
@@ -173,7 +173,7 @@ map.on('load', function() {
 
     }
     console.log(datelist);
-    datelist[31] = (richterToJoules(5));
+    // datelist[31] = (richterToJoules(5));
     map.on('click', 'precipitation', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
         var description = e.features[0].properties;
@@ -212,18 +212,15 @@ map.on('load', function() {
     // specify chart configuration item and data
     var option = {
         title: {
-            text: 'Daily Earthquake Energy Released (kT)'
+            text: 'Daily Earthquake\nEnergy Releaset (pJ)'
         },
         tooltip: {},
-        legend: {
-            data:['kT Released']
-        },
         xAxis: {
-            data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31, 'T']
+            data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
         },
         yAxis: {},
         series: [{
-            name: 'kT Released',
+            name: 'pJ Released',
             type: 'bar',
             data: datelist
         }]
